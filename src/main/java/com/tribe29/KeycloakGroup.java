@@ -24,6 +24,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.google.inject.name.Named;
 import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Collection;
@@ -70,7 +71,7 @@ public class KeycloakGroup extends AbstractGroupBackend {
 
       @Override
       public String getName() {
-        return NAME_PREFIX + uuid.toString().replace(URLEncoder.encode(UUID_PREFIX, StandardCharsets.UTF_8), "");
+        return NAME_PREFIX + uuid.toString().replace(URLDecoder.decode(UUID_PREFIX, StandardCharsets.UTF_8), "");
       }
 
       @Override
