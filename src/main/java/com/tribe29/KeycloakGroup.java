@@ -58,7 +58,7 @@ public class KeycloakGroup extends AbstractGroupBackend {
 
   @Override
   public boolean handles(UUID uuid) {
-    return authConfig.isOAuthType();
+    return authConfig.isOAuthType() && uuid.get().startsWith(UUID_PREFIX);
   }
 
   @Override
@@ -71,7 +71,7 @@ public class KeycloakGroup extends AbstractGroupBackend {
 
       @Override
       public String getName() {
-        return NAME_PREFIX + uuid.toString().replace(URLDecoder.decode(UUID_PREFIX, StandardCharsets.UTF_8), "");
+        return NAME_PREFIX + uuid.get().replace(UUID_PREFIX, "");
       }
 
       @Override
